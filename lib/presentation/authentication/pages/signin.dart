@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify/common/widgets/appbar/app_bar.dart';
 import 'package:spotify/common/widgets/button/basic_button.dart';
 import 'package:spotify/core/configs/assets/app_vectors.dart';
 
-class Signup extends StatelessWidget {
-  const Signup({super.key});
+class Signin extends StatelessWidget {
+  const Signin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +21,9 @@ class Signup extends StatelessWidget {
             const SizedBox(
               height: 35,
             ),
-            _registerText(),
+            _loginText(),
             const SizedBox(
               height: 30,
-            ),
-            _fullNameField(context),
-            const SizedBox(
-              height: 15,
             ),
             _emailField(context),
             const SizedBox(
@@ -38,7 +34,7 @@ class Signup extends StatelessWidget {
               height: 30,
             ),
             BasicButton(
-              text: 'Register',
+              text: 'Login',
               onPressed: () {},
             )
           ],
@@ -47,25 +43,17 @@ class Signup extends StatelessWidget {
     );
   }
 
-  Widget _registerText() {
+  Widget _loginText() {
     return const Align(
       alignment: Alignment.center,
       child: Text(
-        'Register',
+        'Login',
         style: TextStyle(
           fontSize: 30,
           fontFamily: 'Satoshi',
           fontWeight: FontWeight.bold,
         ),
       ),
-    );
-  }
-
-  Widget _fullNameField(BuildContext context) {
-    return TextFormField(
-      decoration: const InputDecoration(
-        hintText: 'Full name',
-      ).applyDefaults(Theme.of(context).inputDecorationTheme),
     );
   }
 
@@ -93,7 +81,7 @@ class Signup extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Already have an account?',
+            "Don't have an account yet?",
             style: TextStyle(
               fontSize: 15,
               fontFamily: 'Satoshi',
@@ -102,7 +90,7 @@ class Signup extends StatelessWidget {
           ),
           SizedBox(width: 10),
           Text(
-            'Sign in',
+            'Sign up',
             style: TextStyle(
               fontSize: 15,
               fontFamily: 'Satoshi',

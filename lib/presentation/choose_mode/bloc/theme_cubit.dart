@@ -18,8 +18,6 @@ class ThemeCubit extends HydratedCubit<ThemeMode> {
 
   @override
   Map<String, dynamic>? toJson(ThemeMode state) {
-    /*enum provides the index of the value in the enum the returns its position in it, 
-    hence a key and value pair of the enum and the index is being stored as a json. */
     print("toJson: ${state.index}");
     try {
       return {'themeMode': state.index};
@@ -31,6 +29,9 @@ class ThemeCubit extends HydratedCubit<ThemeMode> {
   void updateTheme(ThemeMode mode) => emit(mode);
 }
 
+    /*enum provides the index of the value in the enum the returns its position in it, 
+    hence a key and value pair of the enum and the index is being stored as a json. */
+    
 /*
 
 1. State Emission and Caching:
