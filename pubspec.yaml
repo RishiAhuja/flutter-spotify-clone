@@ -42,6 +42,7 @@ dependencies:
   firebase_core:
   firebase_auth:
   get_it: #dependency injection, service locator
+  dartz: #functional programming
 
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,16 @@
+import 'package:dartz/dartz.dart';
 import 'package:spotify/core/usecase/usecase.dart';
+import 'package:spotify/data/models/auth/create_user_request.dart';
+import 'package:spotify/domain/repository/auth/auth_repo.dart';
+import 'package:spotify/service_locator.dart';
 
-class SignInUsecase implements Usecase {
+class SignUpUsecase implements Usecase<Either, CreateUserRequest> {
+  final AuthRepository authFirebaseService = sl<AuthRepository>();
+
   @override
-  Future call({params}) {
-    // TODO: implement call
-    throw UnimplementedError();
+  Future<Either> call({CreateUserRequest? params}) {
+    //named parameters
+    return authFirebaseService.signUp(params!);
   }
 }
 

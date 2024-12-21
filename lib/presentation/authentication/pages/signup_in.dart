@@ -90,8 +90,7 @@ class SignUpInPage extends StatelessWidget {
                                   onPressed: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const Signup())),
+                                          builder: (context) => Signup())),
                                   text: 'Register'),
                               //doesn't have a defined width, hence wrapped with expanded
                             ),
@@ -108,8 +107,7 @@ class SignUpInPage extends StatelessWidget {
                                     onPressed: () => Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Signin())),
+                                            builder: (context) => Signin())),
                                     child: Text(
                                       'Login',
                                       style: TextStyle(

@@ -3,9 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify/common/widgets/appbar/app_bar.dart';
 import 'package:spotify/common/widgets/button/basic_button.dart';
 import 'package:spotify/core/configs/assets/app_vectors.dart';
+import 'package:spotify/data/models/auth/signin_user_request.dart';
+import 'package:spotify/domain/usecases/auth/signin.dart';
+import 'package:spotify/presentation/root/pages/root.dart';
+import 'package:spotify/service_locator.dart';
 
 class Signin extends StatelessWidget {
-  const Signin({super.key});
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  Signin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,31 @@ class Signin extends StatelessWidget {
             ),
             BasicButton(
               text: 'Login',
-              onPressed: () {},
+              onPressed: () async {
+                var result = await sl<SignInUsecase>().call(
+                  params: SigninUserRequest(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  ),
+                );
+
+                result.fold((l) {
+                  print(l.toString());
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(l.toString()),
+                    ),
+                  );
+                }, (r) {
+                  print(r.toString());
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RootPage(),
+                    ),
+                  );
+                });
+              },
             )
           ],
         ),
@@ -59,6 +89,7 @@ class Signin extends StatelessWidget {
 
   Widget _emailField(BuildContext context) {
     return TextFormField(
+      controller: _emailController,
       decoration: const InputDecoration(
         hintText: 'Email',
       ).applyDefaults(Theme.of(context).inputDecorationTheme),
@@ -67,6 +98,7 @@ class Signin extends StatelessWidget {
 
   Widget _passwordField(BuildContext context) {
     return TextFormField(
+      controller: _passwordController,
       obscureText: true,
       decoration: const InputDecoration(
         hintText: 'Password',
